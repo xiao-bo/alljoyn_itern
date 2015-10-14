@@ -1,0 +1,3 @@
+sh chat_service.sh
+sh chat_client.sh
+node /home/xiao/wamqtt/alljoyn.js

@@ -1,0 +1,53 @@
+/* 
+var sys = require('sys')
+var exec = require('child_process').exec;
+
+
+process.stdin.setEncoding('utf8');
+
+process.stdin.on('readable', function() {
+	var chunk = process.stdin.read();
+	if(chunk ==="on\n"){
+		process.stdout.write("Turn on WISE\n");
+		exec("sh /home/xiao/basic/basic_client.sh", puts);
+	}else if(chunk ==="off\n"){
+		process.stdout.write("Turn off WISE\n");
+	}else if(chunk ==="quit\n"){
+		process.exit();
+	}else if(chunk !==null){ 
+		process.stdout.write('data: ' + chunk);
+	}
+});
+
+process.stdin.on('end', function() {
+	  process.stdout.write('end');
+});
+
+
+
+function puts(error, stdout, stderr) { 
+	sys.puts(stdout) 
+}
+
+*/
+
+var spawn = require('child_process').spawn;
+//var ls= spawn('ls', ['-lh', '/usr']);
+var ls=spawn('sh',['/home/xiao/basic/chat_client.sh']);
+ls.stdout.on('data', function (data) {
+	  console.log('stdout: ' + data);
+});
+
+ls.stderr.on('data', function (data) {
+	  console.log('stderr: ' + data);
+});
+
+ls.on('close', function (code) {
+	  console.log('child process exited with code ' + code);
+});
+
+
+setTimeout(function() {
+	ls.kill();
+	console.log('Blah blah blah blah extra-blah');
+}, 3000);
