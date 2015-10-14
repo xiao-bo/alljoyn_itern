@@ -1,0 +1,5 @@
+there files in wamqtt can run depend node_module of wamqtt
+
+so, we have to npm install wamqtt
+
+
